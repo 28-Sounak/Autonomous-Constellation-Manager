@@ -2,8 +2,20 @@ satellites = {}
 debris = {}
 
 def process_telemetry(data):
+
+    obj_id = data['satellite_id']
+
+    r = [data["x"], data["y"], data["z"]]
+
+    satellites[obj_id] = {
+
+        "r": r,
+        "velocity": data["velocity"]
+    }
     
-    objects = data['objects']
+    return len(satellites)
+
+    '''objects = data['objects']
 
     for obj in objects:
 
@@ -14,7 +26,7 @@ def process_telemetry(data):
         v = [obj["v"]["x"], obj["v"]["y"], obj["v"]["z"]]
 
         if obj_type == "SATELLITE":
-            satellited[obj_id] = {
+            satellites[obj_id] = {
                 "r": r,
                 "v": v
             }
@@ -25,4 +37,4 @@ def process_telemetry(data):
                 "v": v
             }
         
-        return len(objects)
+        return len(objects)'''
